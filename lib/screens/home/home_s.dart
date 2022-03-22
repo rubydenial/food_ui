@@ -27,10 +27,15 @@ class HomeS extends StatelessWidget {
           ],
         ),
         actions: [
-          TextButton(onPressed: () {}, child: const Text('Filter')),
+          TextButton(
+            onPressed: () {},
+            child: const Text('Filter', style: TextStyle(color: Colors.black)),
+          ),
         ],
       ),
-      body: Container(),
+      body: CustomScrollView(
+        slivers: [SliverAppBar()],
+      ),
     );
   }
 }
