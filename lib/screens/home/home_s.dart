@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/constants.dart';
-import 'package:food_ui/demo_data.dart';
+import 'package:food_ui/screens/home/components/image_carousel.dart';
 
 class HomeS extends StatelessWidget {
   const HomeS({Key? key}) : super(key: key);
@@ -18,10 +18,7 @@ class HomeS extends StatelessWidget {
               children: [
                 Text(
                   'delivery to'.toUpperCase(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .caption!
-                      .copyWith(color: kActiveColor),
+                  style: Theme.of(context).textTheme.caption!.copyWith(color: kActiveColor),
                 ),
                 const Text(
                   'San Francisco',
@@ -32,22 +29,48 @@ class HomeS extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {},
-                child:
-                    const Text('Filter', style: TextStyle(color: Colors.black)),
+                child: const Text('Filter', style: TextStyle(color: Colors.black)),
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: AspectRatio(
-              aspectRatio: 1.81,
-              child: PageView.builder(
-                itemCount: demoBigImages.length,
-                itemBuilder: (_, index) => Image.asset(demoBigImages[index]),
-              ),
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(
+              horizontal: defaultPadding,
+            ),
+            sliver: SliverToBoxAdapter(
+              child: ImageCarousel(),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(defaultPadding),
+            sliver: SliverToBoxAdapter(
+              child: SectionTitle(title: 'Featured Partners', press: () {}),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class SectionTitle extends StatelessWidget {
+  const SectionTitle({Key? key, required this.title, required this.press}) : super(key: key);
+
+  final String title;
+  final VoidCallback press;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(title, style: Theme.of(context).textTheme.headline5),
+        TextButton(
+          style: TextButton.styleFrom(),
+          child: const Text('Sell All'),
+          onPressed: press,
+        )
+      ],
     );
   }
 }
