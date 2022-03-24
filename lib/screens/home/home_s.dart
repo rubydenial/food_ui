@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/constants.dart';
+import 'package:food_ui/demo_data.dart';
 import 'package:food_ui/screens/home/components/image_carousel.dart';
+import 'package:food_ui/screens/home/components/section_title_w.dart';
 
 class HomeS extends StatelessWidget {
   const HomeS({Key? key}) : super(key: key);
@@ -44,33 +46,68 @@ class HomeS extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.all(defaultPadding),
             sliver: SliverToBoxAdapter(
-              child: SectionTitle(title: 'Featured Partners', press: () {}),
+              child: SectionTitleW(title: 'Featured Partners', press: () {}),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: AspectRatio(
+                        aspectRatio: 1.25,
+                        child: Image.asset("assets/images/medium_1.png"),
+                      ),
+                    ),
+                    const SizedBox(height: defaultPadding / 2),
+                    Text(
+                      demoMediumCardData[0]['name'],
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                      child: Text(
+                        demoMediumCardData[0]['location'],
+                        style: const TextStyle(color: kBodyTextColor),
+                      ),
+                    ),
+                    DefaultTextStyle(
+                      style: const TextStyle(color: Colors.black, fontSize: 12),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: defaultPadding / 2,
+                              vertical: defaultPadding / 8,
+                            ),
+                            decoration: const BoxDecoration(
+                              color: kActiveColor,
+                              borderRadius: BorderRadius.all(Radius.circular(6)),
+                            ),
+                            child: const Text('4.6', style: TextStyle(color: Colors.white)),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text('25 min'),
+                          const SizedBox(width: 8),
+                          const CircleAvatar(
+                            radius: 2,
+                            backgroundColor: kBodyTextColor,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text('Free Delivery'),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class SectionTitle extends StatelessWidget {
-  const SectionTitle({Key? key, required this.title, required this.press}) : super(key: key);
-
-  final String title;
-  final VoidCallback press;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(title, style: Theme.of(context).textTheme.headline5),
-        TextButton(
-          style: TextButton.styleFrom(),
-          child: const Text('Sell All'),
-          onPressed: press,
-        )
-      ],
     );
   }
 }
