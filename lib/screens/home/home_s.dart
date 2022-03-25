@@ -52,56 +52,65 @@ class HomeS extends StatelessWidget {
           SliverToBoxAdapter(
             child: Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      child: AspectRatio(
-                        aspectRatio: 1.25,
-                        child: Image.asset("assets/images/medium_1.png"),
+                InkWell(
+                  onTap: () {},
+//                  borderRadius: BorderRadius.all(Radius.circular(36)),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: AspectRatio(
+                          aspectRatio: 1.25,
+                          child: Image.asset("assets/images/medium_1.png"),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: defaultPadding / 2),
-                    Text(
-                      demoMediumCardData[0]['name'],
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-                      child: Text(
-                        demoMediumCardData[0]['location'],
-                        style: const TextStyle(color: kBodyTextColor),
+                      const SizedBox(height: defaultPadding / 2),
+                      Text(
+                        demoMediumCardData[0]['name'],
+                        style: Theme.of(context).textTheme.headline6,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    DefaultTextStyle(
-                      style: const TextStyle(color: Colors.black, fontSize: 12),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding / 2,
-                              vertical: defaultPadding / 8,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                        child: Text(
+                          demoMediumCardData[0]['location'],
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: kBodyTextColor),
+                        ),
+                      ),
+                      DefaultTextStyle(
+                        style: const TextStyle(color: Colors.black, fontSize: 12),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding / 2,
+                                vertical: defaultPadding / 8,
+                              ),
+                              decoration: const BoxDecoration(
+                                color: kActiveColor,
+                                borderRadius: BorderRadius.all(Radius.circular(6)),
+                              ),
+                              child: const Text('4.6', style: TextStyle(color: Colors.white)),
                             ),
-                            decoration: const BoxDecoration(
-                              color: kActiveColor,
-                              borderRadius: BorderRadius.all(Radius.circular(6)),
+                            const SizedBox(width: 8),
+                            const Text('25 min'),
+                            const SizedBox(width: 8),
+                            const CircleAvatar(
+                              radius: 2,
+                              backgroundColor: kBodyTextColor,
                             ),
-                            child: const Text('4.6', style: TextStyle(color: Colors.white)),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text('25 min'),
-                          const SizedBox(width: 8),
-                          const CircleAvatar(
-                            radius: 2,
-                            backgroundColor: kBodyTextColor,
-                          ),
-                          const SizedBox(width: 8),
-                          const Text('Free Delivery'),
-                        ],
-                      ),
-                    )
-                  ],
+                            const SizedBox(width: 8),
+                            const Text('Free Delivery'),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
